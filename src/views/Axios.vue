@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, Ref } from 'vue'
-import axios from '../utils/axios';
+import axios from '../utils/axios'
 
 export default defineComponent({
   name: 'Axios',
@@ -36,12 +36,14 @@ export default defineComponent({
       axios
         .get('/users/XPoet')
         .then((response) => {
+          // eslint-disable-next-line no-console
           console.log('response: ', response.data)
           userInfo.value = response.data
           loading.value = false
         })
         .catch((error) => {
           loading.value = false
+          // eslint-disable-next-line no-console
           console.error(error)
         })
     }
