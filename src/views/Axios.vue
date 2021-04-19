@@ -5,7 +5,7 @@
       <el-card class="box-card">
         <template #header>
           <div class="card-header">
-            <span>XPoet</span>
+            <span>get axios data</span>
             <el-button class="button" type="text" @click="getUserInfo"
               >点击获取XPoet信息
             </el-button>
@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, Ref } from 'vue'
-import axios from '../utils/axios'
+import axios from '../utils/axios';
 
 export default defineComponent({
   name: 'Axios',
