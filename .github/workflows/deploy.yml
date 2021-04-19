@@ -18,6 +18,9 @@ jobs:
       - name: Install
         run: npm install
 
+      - name: Run a one-line script
+        run: echo Hello, world!
+
       - name: Build
         run: npm run build
 
