@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Vuex from '@/views/Vuex.vue'
 import Test from '@/views/Test.vue'
+import Drag from '@/views/Drag.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -23,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/test',
     name: 'Test',
     component: Test
+  },
+  {
+    path: '/drag',
+    name: 'Drag',
+    component: Drag
   }
 ]
 
