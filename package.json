@@ -1,6 +1,6 @@
 {
   "name": "vite-v3-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "A Vite2.x + Vue3 + TypeScript template starter",
   "scripts": {
@@ -24,7 +24,7 @@
     "TypeScript",
     "Starter"
   ],
-  "author": "XPoet",
+  "author": "zivenZhang",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kingzlz/vite-v3-template/issues"

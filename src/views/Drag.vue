@@ -47,45 +47,41 @@
         >
           {{ box.text }}
         </div>
-        <button class="btn"  @click="dialogVisible = true">两个图形相交参考</button>
+        <button class="btn" @click="dialogVisible = true">两个图形相交参考</button>
       </div>
     </div>
-  </section>
-  <el-dialog
-  title="提示"
-  v-model="dialogVisible"
-  width="800"
-  >
-  <div>参考https://github.com/francecil/leetcode/issues/1</div>
-  <pre>
-    const isOverlap = (rect1, rect2) => {
-      const l1 = { x: rect1.x, y: rect1.y }
-      const r1 = { x: rect1.x + rect1.width, y: rect1.y + rect1.height }
-      const l2 = { x: rect2.x, y: rect2.y }
-      const r2 = { x: rect2.x + rect2.width, y: rect2.y + rect2.height }
-      if (
-        l1.x > r2.x ||
-        l2.x > r1.x ||
-        l1.y > r2.y ||
-        l2.y > r1.y
-      ) return false
-      return true
-    }
+    <el-dialog title="提示" v-model="dialogVisible" width="800">
+      <div>参考https://github.com/francecil/leetcode/issues/1</div>
+      <pre>
+        const isOverlap = (rect1, rect2) => {
+          const l1 = { x: rect1.x, y: rect1.y }
+          const r1 = { x: rect1.x + rect1.width, y: rect1.y + rect1.height }
+          const l2 = { x: rect2.x, y: rect2.y }
+          const r2 = { x: rect2.x + rect2.width, y: rect2.y + rect2.height }
+          if (
+            l1.x > r2.x ||
+            l2.x > r1.x ||
+            l1.y > r2.y ||
+            l2.y > r1.y
+          ) return false
+          return true
+        }
 
-  </pre>
-  <template #footer>
-    <span class="dialog-footer">
-      <el-button @click="dialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-    </span>
-  </template>
-</el-dialog>
+  </pre
+      >
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, computed, toRefs, ref } from 'vue'
 import { useStore } from 'vuex'
-
 
 export interface React {
   [key: string]: any
@@ -124,7 +120,14 @@ export default defineComponent({
       curComponent: computed(() => store.state.curComponent),
       rect: computed(() => store.state.rect)
     })
-
+    const isOverlap = (rect1: React, rect2: React) => {
+      const l1 = { x: rect1.x, y: rect1.y }
+      const r1 = { x: rect1.x + rect1.width, y: rect1.y + rect1.height }
+      const l2 = { x: rect2.x, y: rect2.y }
+      const r2 = { x: rect2.x + rect2.width, y: rect2.y + rect2.height }
+      if (l1.x > r2.x || l2.x > r1.x || l1.y > r2.y || l2.y > r1.y) return false
+      return true
+    }
     const selectCurComponent = (e: MouseEvent) => {
       // 阻止向父组件冒泡
       e.stopPropagation()
@@ -135,7 +138,7 @@ export default defineComponent({
       e.preventDefault()
       const el = e.target as HTMLElement
       boxName.value = el.innerText
-      let elementClass = el.classList
+      const elementClass = el.classList
       // eslint-disable-next-line no-unused-expressions
       el.innerText === '第一个盒子' ? (second.value = '第二个盒子') : (second.value = '第一个盒子')
       elementClass.add('active')
@@ -176,23 +179,15 @@ export default defineComponent({
       document.addEventListener('mousemove', move)
       document.addEventListener('mouseup', up)
     }
-    const isOverlap = (rect1: React, rect2: React) => {
-      const l1 = { x: rect1.x, y: rect1.y }
-      const r1 = { x: rect1.x + rect1.width, y: rect1.y + rect1.height }
-      const l2 = { x: rect2.x, y: rect2.y }
-      const r2 = { x: rect2.x + rect2.width, y: rect2.y + rect2.height }
-      if (l1.x > r2.x || l2.x > r1.x || l1.y > r2.y || l2.y > r1.y) return false
-      return true
-    }
 
     return {
       ...toRefs(reactiveData),
       dataList,
+      isOverlap,
       handleMouseDownOnShape,
       boxName,
       msg,
       second,
-      isOverlap,
       section,
       dialogVisible,
       selectCurComponent
@@ -209,11 +204,13 @@ export default defineComponent({
   width: 100%;
   height: 100%;
 }
+
 .btn {
-  position absolute
-  right 0
-  z-index 100
+  position: absolute;
+  right: 0;
+  z-index: 100;
 }
+
 .center {
   margin-left: 100px;
   margin-right: 100px;
